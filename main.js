@@ -27,32 +27,42 @@ console.log(specialMultiply(3)); // f
 
 //Task No3
 
-function game() {
+let gameGuess = (gameAtt) => {
   let n = Math.floor(Math.random() * 11);
-  let attempts = 5;
+  let attempts = 0;
   let gotIt = false;
-  while (true) {
-    let x = +prompt("Enter your guess (0 to 10):");
-    if (attempts == 0) {
-      alert(`No more guesses the answer was ${n}! Please start a new game`);
+  return function game(x) {
+    if (attempts === gameAtt) {
+      console.log(`No more guesses the answer was ${n}! Please start a new game`);
       return;
     }
-    attempts--;
-    if (!gotIt) {
-      if (isNaN(x) || x < 0 || x > 10) {
-        alert("Not correct entry!");
-        break;
-      } else if (x < n) {
-        alert("Your guess is too low!");
-      } else if (x > n) {
-        alert("Your guess is too high!");
-      } else {
+    else if (!gotIt) {
+      if (x < n) {
+        console.log("Your guess is too low!");
+      } 
+      else if (x > n) {
+        console.log("Your guess is too high!");
+      } 
+      else {
         gotIt = true;
-        alert("You got it!");
+        console.log("You got it!");
       }
     } 
     else {
-      alert("You know the answer. What do you want from me?");
+      console.log("You know the answer. What do you want from me?");
     }
+    return attempts++;
   };
 };
+let myGame = gameGuess(5);
+myGame(2);
+myGame(4);
+myGame(6);
+myGame(8);
+myGame(10);
+myGame(1);
+myGame(3);
+myGame(5);
+myGame(7);
+myGame(9);
+myGame(0);
